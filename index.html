@@ -1,519 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tormac Systems - Software Consulting & Data Protection</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tormac Systems is a Warsaw-based consultancy for software architecture, data protection and EU regulatory compliance.">
+<title>Tormac Systems: Software Consulting and Data Protection</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f5f4f0'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23e4372c'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#f5f4f0;--ink:#131312;--mute:#6f6d67;--line:rgb(19 19 18/.14);--dot:#e4372c;--ease:cubic-bezier(.16,1,.3,1);--gut:clamp(20px,3.2vw,48px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:light;scroll-behavior:smooth;scroll-padding-top:72px;interpolate-size:allow-keywords;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;border-radius:2px}
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-            color: #e0e0e0;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+.bar{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px var(--gut);font-size:13px;letter-spacing:-.005em;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px) saturate(1.4)}
+.brand{display:inline-flex;align-items:center;gap:8px;font-weight:600;letter-spacing:-.015em}
+.brand i{width:7px;height:7px;border-radius:50%;background:var(--dot);transition:scale .5s var(--ease)}
+.brand:hover i{scale:1.7}
+.clock{color:var(--mute);font-variant-numeric:tabular-nums}
+.bar nav{display:flex;justify-content:flex-end;gap:24px}
+.bar nav a{position:relative;padding:2px 0}
+.bar nav a::after,.u::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;scale:0 1;transform-origin:right;transition:scale .5s var(--ease)}
+.bar nav a:hover::after,.u:hover::after{scale:1 1;transform-origin:left}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+.hero{min-height:calc(100svh - 54px);display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--gut) var(--gut)}
+h1{font-size:min(8.9vw,9.2rem);font-weight:500;line-height:1;letter-spacing:-.04em}
+.l{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.l span{display:block;animation:up 1.1s var(--ease) calc(.1s + var(--i)*.09s) backwards}
+@keyframes up{from{translate:0 108%}}
+.lead{display:grid;grid-template-columns:repeat(12,1fr);gap:0 20px;margin-top:clamp(28px,4vw,56px);padding-top:16px;position:relative;animation:fade .9s ease .55s backwards}
+.lead::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:var(--ink);transform-origin:left;animation:draw 1.3s var(--ease) .3s backwards}
+@keyframes draw{from{scale:0 1}}
+@keyframes fade{from{opacity:0}}
+.lead p{grid-column:7/12;font-size:clamp(17px,1.5vw,21px);line-height:1.35;letter-spacing:-.015em;text-wrap:pretty}
+.lead span{grid-column:1/7;font-size:13px;color:var(--mute)}
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+section{padding:clamp(72px,11vw,160px) var(--gut) 0}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 20px}
+.tag{grid-column:1/4;font-size:13px;color:var(--mute)}
+.rows{grid-column:4/-1;list-style:none;border-top:1px solid var(--line)}
+.row{position:relative;display:grid;grid-template-columns:44px minmax(0,5fr) minmax(0,6fr);gap:0 20px;padding:26px 0 30px;border-bottom:1px solid var(--line);transition:opacity .4s ease}
+.row::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);scale:0 1;transform-origin:left;transition:scale .7s var(--ease)}
+.row small{font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums;padding-top:7px}
+.row h3{font-size:clamp(23px,2.5vw,36px);font-weight:500;letter-spacing:-.027em;line-height:1.1;transition:translate .6s var(--ease)}
+.row p{font-size:16px;line-height:1.45;color:var(--mute);padding-top:5px;transition:color .4s ease;text-wrap:pretty}
+@media (hover:hover){
+  .rows:has(.row:hover) .row:not(:hover){opacity:.32}
+  .row:hover::after{scale:1 1}
+  .row:hover h3{translate:10px 0}
+  .row:hover p{color:var(--ink)}
+}
+.say{grid-column:4/-1;font-size:clamp(25px,3.5vw,50px);font-weight:500;line-height:1.12;letter-spacing:-.03em;text-wrap:pretty}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.mail{grid-column:4/-1;display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 24px}
+.mail a{position:relative;font-size:min(7.4vw,6.2rem);font-weight:500;letter-spacing:-.038em;line-height:1.1}
+.mail a::after{height:.035em;bottom:.03em}
+.copy{font:inherit;font-size:13px;color:var(--mute);background:none;border:0;cursor:pointer;min-width:6ch;text-align:left;transition:color .3s}
+.copy:hover,.copy.on{color:var(--ink)}
+.copy:active{scale:.96}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ff4444;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
+.legal{grid-column:4/-1;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:16px;letter-spacing:-.015em;cursor:pointer;list-style:none;transition:padding .5s var(--ease)}
+summary::-webkit-details-marker{display:none}
+summary:hover{padding-left:8px}
+summary i{position:relative;width:13px;height:13px;transition:rotate .55s var(--ease)}
+summary i::before,summary i::after{content:"";position:absolute;background:currentColor}
+summary i::before{inset:6px 0;height:1px}
+summary i::after{inset:0 6px;width:1px}
+details[open] i{rotate:135deg}
+details::details-content{block-size:0;overflow:hidden;transition:block-size .6s var(--ease),content-visibility .6s allow-discrete}
+details[open]::details-content{block-size:auto}
+.legal-body{max-width:62ch;padding:4px 0 28px;font-size:14px;line-height:1.55;color:var(--mute)}
+.legal-body p+p{margin-top:12px}
+.legal-body b{color:var(--ink);font-weight:500}
+.legal-body a{text-decoration:underline;text-underline-offset:2px}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+footer{display:flex;justify-content:space-between;gap:20px;padding:clamp(72px,10vw,140px) var(--gut) 24px;font-size:13px;color:var(--mute)}
 
-        .nav-links a {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #ff4444;
-        }
-
-        /* Business Information & Legal Sections */
-        .business-info, .legal {
-            padding: 6rem 0;
-        }
-
-        .business-content, .legal-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .business-grid, .legal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .business-card, .legal-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-        }
-
-        .business-card h3, .legal-card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-        }
-
-        .business-card p, .legal-card p {
-            color: #b0b0b0;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .business-card p strong, .legal-card p strong {
-            color: #e0e0e0;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-top: 80px;
-        }
-
-        .hero-content {
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            color: #b0b0b0;
-            font-weight: 400;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);
-            color: #ffffff;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.3);
-        }
-
-        /* Background Animation */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(204, 51, 51, 0.1) 0%, transparent 50%);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 0;
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 68, 68, 0.3);
-            box-shadow: 0 15px 40px rgba(255, 68, 68, 0.1);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #ff4444;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .service-card p {
-            color: #b0b0b0;
-            line-height: 1.6;
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 0;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            font-size: 1.2rem;
-            color: #b0b0b0;
-            margin-bottom: 2rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 0;
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: #b0b0b0;
-            font-size: 1.1rem;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: #ff4444;
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #666;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-        }
-    </style>
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .r{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 30%}
+    @keyframes rise{from{opacity:0;translate:0 18px}}
+  }
+}
+@media (max-width:760px){
+  .bar{grid-template-columns:1fr auto}.clock{display:none}.bar nav{gap:14px}
+  .lead p,.lead span,.tag,.rows,.say,.mail,.legal{grid-column:1/-1}
+  .lead span{order:2;margin-top:14px}
+  .tag{margin-bottom:18px}
+  .row{grid-template-columns:32px minmax(0,1fr)}.row p{grid-column:2;padding-top:10px}
+  .mail a{font-size:11.2vw}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-container">
-                <a href="#" class="logo">Tormac Systems</a>
-                <ul class="nav-links">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#legal">Legal</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Software Consulting & Data Protection</h1>
-                <p>Empowering businesses with cutting-edge software solutions and comprehensive data protection strategies.</p>
-                <a href="#contact" class="cta-button">Get Started</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 3H15L17 5V19C17 20.1 16.1 21 15 21H9C7.9 21 7 20.1 7 19V5L9 3Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                            <path d="M14 17V7L12 9L10 7V17" stroke="currentColor" stroke-width="2" fill="none"/>
-                        </svg>
-                    </div>
-                    <h3>Software Consulting</h3>
-                    <p>Expert guidance on software architecture, development strategies, and technology solutions tailored to your business needs. We help businesses make informed technology decisions and implement scalable solutions.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" fill="none"/>
-                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" fill="none"/>
-                        </svg>
-                    </div>
-                    <h3>Data Protection Advisory</h3>
-                    <p>Comprehensive data protection strategies, GDPR compliance consulting, and security assessments to safeguard your valuable information. We ensure your business meets all regulatory requirements.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 16V8C21 5.79086 19.2091 4 17 4H7C4.79086 4 3 5.79086 3 8V16C3 18.2091 4.79086 20 7 20H17C19.2091 20 21 18.2091 21 16Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                            <path d="M7 12H17" stroke="currentColor" stroke-width="2"/>
-                            <path d="M7 8H17" stroke="currentColor" stroke-width="2"/>
-                            <path d="M7 16H11" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>SaaS Applications</h3>
-                    <p>Developing innovative SaaS solutions for data protection and monitoring, designed for modern businesses. Our applications provide real-time insights and automated compliance reporting.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">About Tormac Systems</h2>
-            <div class="about-content">
-                <p>At Tormac Systems, we specialize in delivering high-quality software consulting services and comprehensive data protection solutions. Our expertise spans across modern software development, security implementation, and innovative SaaS applications.</p>
-                <p>We are committed to helping businesses navigate the complex landscape of data protection while building robust, scalable software solutions that drive growth and innovation.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <p>Ready to elevate your business with our expert consulting services? Let's discuss how we can help you achieve your goals.</p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <span>hello@tormac.pl</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
-                                <path d="M2 12h20" stroke="currentColor" stroke-width="2"/>
-                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <span>www.tormac.pl</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Business Information Section -->
-    <section class="business-info" id="business-info">
-        <div class="container">
-            <h2 class="section-title">Business Information</h2>
-            <div class="business-content">
-                <div class="business-grid">
-                    <div class="business-card">
-                        <h3>Company Details</h3>
-                        <p><strong>Company Name:</strong> Tormac Systems</p>
-                        <p><strong>Business Type:</strong> Software Development & Data Protection Consulting</p>
-                        <p><strong>Location:</strong> Poland</p>
-                        <p><strong>Website:</strong> www.tormac.pl</p>
-                    </div>
-                    <div class="business-card">
-                        <h3>Service Delivery</h3>
-                        <p><strong>Delivery Method:</strong> Digital services delivered remotely</p>
-                        <p><strong>Service Timeline:</strong> Project timelines vary based on scope and complexity</p>
-                        <p><strong>Support:</strong> Ongoing support and maintenance available</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Legal Section -->
-    <section class="legal" id="legal">
-        <div class="container">
-            <h2 class="section-title">Legal Information</h2>
-            <div class="legal-content">
-                <div class="legal-grid">
-                    <div class="legal-card">
-                        <h3>Privacy Policy</h3>
-                        <p>We are committed to protecting your privacy and personal data in accordance with GDPR and applicable data protection laws. We collect and process personal information only as necessary to provide our services.</p>
-                        <p><strong>Data We Collect:</strong> Contact information, project requirements, and communication records.</p>
-                        <p><strong>Data Use:</strong> To provide consulting services, communicate with clients, and fulfill contractual obligations.</p>
-                        <p><strong>Data Protection:</strong> We implement appropriate technical and organizational measures to protect your data.</p>
-                    </div>
-                    <div class="legal-card">
-                        <h3>Terms of Service</h3>
-                        <p><strong>Service Agreement:</strong> Services are provided under individual consulting agreements tailored to each client's needs.</p>
-                        <p><strong>Payment Terms:</strong> Payment terms are specified in individual service agreements.</p>
-                        <p><strong>Intellectual Property:</strong> Clients retain ownership of their data and business information. Tormac Systems retains rights to general methodologies and know-how.</p>
-                        <p><strong>Limitation of Liability:</strong> Our liability is limited as specified in individual service agreements.</p>
-                    </div>
-                    <div class="legal-card">
-                        <h3>Refund & Cancellation Policy</h3>
-                        <p><strong>Service Cancellation:</strong> Clients may cancel services with reasonable notice as specified in the service agreement.</p>
-                        <p><strong>Refund Policy:</strong> Refunds are considered on a case-by-case basis for work not yet performed.</p>
-                        <p><strong>Dispute Resolution:</strong> We are committed to resolving any disputes through direct communication and, if necessary, through applicable legal channels in Poland.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Tormac Systems. All rights reserved. | <a href="#legal" style="color: #ff4444;">Privacy Policy & Terms</a></p>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(15, 15, 15, 0.98)';
-            } else {
-                nav.style.background = 'rgba(15, 15, 15, 0.95)';
-            }
-        });
-    </script>
+<header class="bar">
+  <a class="brand" href="#top"><i></i>Tormac Systems</a>
+  <span class="clock">Warszawa <span id="t">--:--:--</span></span>
+  <nav><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#legal">Legal</a></nav>
+</header>
+<main id="top">
+  <div class="hero">
+    <h1><span class="l"><span style="--i:0">Software consulting</span></span><span class="l"><span style="--i:1">and data protection.</span></span></h1>
+    <div class="lead"><span>Warszawa, Poland. Delivered remotely.</span><p>Software architecture, data protection and EU regulatory advice for companies that need clear answers and working systems.</p></div>
+  </div>
+  <section id="services" class="grid">
+    <div class="tag r">Services</div>
+    <ol class="rows">
+      <li class="row r"><small>01</small><h3>Software consulting</h3><p>Guidance on software architecture, development practice and technology choices, based on your systems and your constraints.</p></li>
+      <li class="row r"><small>02</small><h3>Data protection advisory</h3><p>Data protection strategy, EU regulatory consulting and security assessments. We help your team work out which requirements apply and build a practical plan to meet them.</p></li>
+      <li class="row r"><small>03</small><h3>SaaS applications</h3><p>We build SaaS tools for data protection and system monitoring.</p></li>
+    </ol>
+  </section>
+  <section id="about" class="grid">
+    <div class="tag r">About</div>
+    <p class="say r">Tormac Systems is a Warsaw-based software and data protection consultancy. We advise on software architecture, security and EU data regulations, and build tools for data protection and monitoring.</p>
+  </section>
+  <section id="contact" class="grid">
+    <div class="tag r">Tell us what you are working on</div>
+    <div class="mail r"><a class="u" href="mailto:hello@tormac.pl">hello@tormac.pl</a><button class="copy" type="button" data-copy="hello@tormac.pl">Copy</button></div>
+  </section>
+  <section id="legal" class="grid">
+    <div class="tag r">Legal</div>
+    <div class="legal r"><details name="legal"><summary><span>Privacy policy</span><i aria-hidden="true"></i></summary><div class="legal-body">
+<p><b>Controller.</b> Tormac Systems Paweł Staniec, ul. Jana Olbrachta 23b/117, 01-102 Warszawa, Poland, NIP 9511983445. Contact: <a href="mailto:hello@tormac.pl">hello@tormac.pl</a>.</p>
+<p><b>Data we process.</b> Contact details, project requirements and correspondence you send us. GitHub Pages, which hosts this site, records technical data such as IP addresses in its server logs.</p>
+<p><b>Purposes and legal bases.</b> Replying to enquiries, keeping the site secure and establishing or defending claims (legitimate interest, Art. 6(1)(f) GDPR). Preparing and performing contracts (Art. 6(1)(b) GDPR). Meeting tax and accounting obligations (Art. 6(1)(c) GDPR).</p>
+<p><b>Recipients.</b> Our hosting and email providers (GitHub and Apple), and accounting or legal advisers where needed. GitHub and Apple may process data outside the EEA, under the EU-US Data Privacy Framework or standard contractual clauses.</p>
+<p><b>Retention.</b> Enquiries that do not lead to a contract: up to 12 months. Contract data: for the term of the contract and until related claims expire. Accounting records: 5 years from the end of the relevant tax year.</p>
+<p><b>Your rights.</b> You can request access to your data, its rectification, erasure, restriction or portability, and object to processing based on legitimate interest. Email us to exercise these rights. You can also complain to the President of the Personal Data Protection Office (UODO), ul. Stawki 2, 00-193 Warszawa.</p>
+<p><b>Other.</b> Providing data is voluntary, but we need it to reply to you or work with you. We do not use automated decision-making or profiling. This site sets no cookies and uses no analytics.</p>
+</div></details>
+</div>
+  </section>
+</main>
+<footer><span>&copy; <span id="y">2026</span> Tormac Systems</span><a class="u" href="#top" style="position:relative">Back to top</a></footer>
+<script>
+const t=document.getElementById('t'),f=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Warsaw',hour:'2-digit',minute:'2-digit',second:'2-digit'}),tick=()=>t.textContent=f.format(new Date);tick();setInterval(tick,1000);
+document.getElementById('y').textContent=new Date().getFullYear();
+document.querySelectorAll('[data-copy]').forEach(b=>{const o=b.textContent;b.onclick=async()=>{try{await navigator.clipboard.writeText(b.dataset.copy)}catch(e){const a=document.createElement('textarea');a.value=b.dataset.copy;document.body.append(a);a.select();document.execCommand('copy');a.remove()}b.textContent='Copied';b.classList.add('on');setTimeout(()=>{b.textContent=o;b.classList.remove('on')},1400)}});
+</script>
 </body>
 </html>
