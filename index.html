@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Tormac Systems is a Warsaw-based consultancy for software architecture, data protection and EU regulatory compliance.">
 <title>Tormac Systems: Software Consulting and Data Protection</title>
+<link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f5f4f0'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23e4372c'/%3E%3C/svg%3E">
 <style>
-:root{--bg:#f5f4f0;--ink:#131312;--mute:#6f6d67;--line:rgb(19 19 18/.14);--ease:cubic-bezier(.16,1,.3,1);--gut:clamp(20px,3.2vw,48px)}
+@font-face{font-family:Jost;src:url(fonts/jost-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+:root{--bg:#f7f7f5;--ink:#393536;--mute:#6e6a6b;--line:rgb(57 53 54/.16);--red:#c4161d;--ease:cubic-bezier(.16,1,.3,1);--gut:clamp(20px,3.2vw,48px);--geo:Jost,Futura,"Century Gothic","Avenir Next",ui-sans-serif,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;--sys:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{color-scheme:light;scroll-behavior:smooth;scroll-padding-top:72px;interpolate-size:allow-keywords;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font:400 16px/1.5 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -67,10 +69,6 @@ details{border-bottom:1px solid var(--line)}
 summary{display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:16px;letter-spacing:-.015em;cursor:pointer;list-style:none;transition:padding .5s var(--ease)}
 summary::-webkit-details-marker{display:none}
 summary:hover{padding-left:8px}
-summary i{position:relative;width:13px;height:13px;transition:rotate .55s var(--ease)}
-summary i::before,summary i::after{content:"";position:absolute;background:currentColor}
-summary i::before{inset:6px 0;height:1px}
-summary i::after{inset:0 6px;width:1px}
 details[open] i{rotate:135deg}
 details::details-content{block-size:0;overflow:hidden;transition:block-size .6s var(--ease),content-visibility .6s allow-discrete}
 details[open]::details-content{block-size:auto}
@@ -97,6 +95,48 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:clamp(72px,10
 }
 @media (max-width:374px){.brand svg{height:22px}.bar nav{gap:10px;font-size:12px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* Styling derived from the logo */
+body{font-family:var(--geo)}
+::selection{background:var(--red);color:#fff}
+.bar nav{letter-spacing:.03em;font-weight:500}
+.clock{font-family:var(--sys)}
+.hero{position:relative;overflow:hidden}
+h1{position:relative;font-size:min(8.3vw,8.8rem);line-height:1.04;letter-spacing:-.012em}
+.l .pt{display:inline;animation:none;color:var(--red)}
+.mark{position:absolute;right:-9vw;top:3%;width:min(56vw,800px);height:auto;fill:#ebebe8;overflow:visible;transform-origin:50% 50%}
+.mark path{animation:lock 1.7s var(--ease) calc(.15s + var(--n)*.09s) backwards}
+@keyframes lock{from{opacity:0;translate:calc(var(--x)*3px) calc(var(--y)*3px)}}
+.lead p{font-family:var(--sys);letter-spacing:-.01em}
+.lead span,.tag{font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;line-height:1.8}
+.row small{font-size:12px;letter-spacing:.1em}
+.row::after{background:var(--red)}
+.row h3{letter-spacing:-.006em;font-weight:500}
+.row p,.legal-body{font-family:var(--sys)}
+.say{letter-spacing:-.01em;line-height:1.16}
+.mail a{letter-spacing:-.012em;font-size:min(7vw,6rem)}
+.mail a::after{background:var(--red)}
+.copy{letter-spacing:.04em}
+.copy.on{color:var(--red)}
+summary{letter-spacing:0;font-size:17px}
+summary i{width:14px;height:12px;background:var(--ink);clip-path:polygon(50% 0,100% 100%,77% 100%,50% 34%,23% 100%,0 100%);rotate:180deg;transition:rotate .55s var(--ease),background .3s}
+details[open] i{rotate:0deg;background:var(--red)}
+footer{letter-spacing:.02em}
+footer .up{display:inline-block;width:9px;height:8px;margin-right:7px;background:var(--red);clip-path:polygon(50% 0,100% 100%,77% 100%,50% 34%,23% 100%,0 100%);transition:translate .5s var(--ease)}
+footer a:hover .up{translate:0 -3px}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .mark{animation:turn linear both;animation-timeline:scroll(root);animation-range:0 100vh}
+    @keyframes turn{to{rotate:90deg}}
+  }
+}
+@media (max-width:760px){
+  .mark{right:-34vw;top:5%;width:112vw}
+  h1{font-size:9.4vw}
+  .mail a{font-size:10.6vw}
+  .lead span{margin-top:18px}
+}
+@media (prefers-reduced-motion:reduce){.mark path{animation:none!important}}
 </style>
 </head>
 <body>
@@ -106,8 +146,8 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:clamp(72px,10
   <nav><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#legal">Legal</a></nav>
 </header>
 <main id="top">
-  <div class="hero">
-    <h1><span class="l"><span style="--i:0">Software consulting</span></span><span class="l"><span style="--i:1">and data protection.</span></span></h1>
+  <div class="hero"><svg class="mark" viewBox="143.3 23.7 28.2 27.4" aria-hidden="true"><path style="--x:1;--y:-1;--n:0" d="M164.1953 32.6836C162.6758 31.1172 160.8516 30.3242 158.7227 30.3047L158.7227 26.1094C162.168 26.1328 165.1133 27.3125 167.5547 29.6641C170.0195 32.0352 171.25 34.9023 171.25 38.2617C171.25 38.2969 171.2422 38.3281 171.2422 38.3633L166.5 38.3633C166.4844 36.1523 165.7188 34.2617 164.1953 32.6836"/><path style="--x:1;--y:1;--n:1" d="M164.1133 38.418C164.1133 38.3984 164.1094 38.3828 164.1094 38.3633L168.8555 38.3633C168.832 41.8867 167.6328 44.8281 165.25 47.1836C162.8633 49.5391 159.8945 50.7227 156.332 50.7461L156.332 46.5469C158.4609 46.5273 160.2891 45.7344 161.8047 44.1641C163.3398 42.5664 164.1133 40.6523 164.1133 38.418"/><path style="--x:-1;--y:-1;--n:2" d="M149.6875 27.5703C152.125 25.1875 155.1016 23.9961 158.625 23.9961C158.6562 23.9961 158.6875 24 158.7227 24L158.7227 28.1992C158.6953 28.1992 158.668 28.1953 158.6406 28.1953C156.4648 28.1953 154.6094 28.9844 153.0742 30.5703C151.5469 32.1367 150.7852 34.0352 150.7695 36.2539L146.0391 36.2539C146.0508 32.8359 147.2656 29.9414 149.6875 27.5703"/><path style="--x:-1;--y:1;--n:3" d="M148.3867 36.2539C148.3867 36.2695 148.3867 36.2891 148.3867 36.3086C148.3867 38.5547 149.1484 40.4766 150.6875 42.0664C152.2266 43.6562 154.082 44.4492 156.2578 44.4492C156.2852 44.4492 156.3086 44.4453 156.3359 44.4453L156.3359 48.6484C156.3008 48.6484 156.2734 48.6523 156.2422 48.6523C152.7188 48.6523 149.7383 47.457 147.3047 45.0703C144.8672 42.6875 143.6484 39.7656 143.6484 36.3086C143.6484 36.2891 143.6523 36.2695 143.6523 36.2539ZM148.3867 36.2539"/></svg>
+    <h1><span class="l"><span style="--i:0">Software consulting</span></span><span class="l"><span style="--i:1">and data protection<span class="pt">.</span></span></span></h1>
     <div class="lead"><span>Warszawa, Poland. Delivered remotely.</span><p>Software architecture, data protection and EU regulatory advice for companies that need clear answers and working systems.</p></div>
   </div>
   <section id="services" class="grid">
@@ -140,7 +180,7 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:clamp(72px,10
 </div>
   </section>
 </main>
-<footer><span>&copy; <span id="y">2026</span> Tormac Systems</span><a class="u" href="#top" style="position:relative">Back to top</a></footer>
+<footer><span>&copy; <span id="y">2026</span> Tormac Systems</span><a class="u" href="#top" style="position:relative"><i class="up" aria-hidden="true"></i>Back to top</a></footer>
 <script>
 const t=document.getElementById('t'),f=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Warsaw',hour:'2-digit',minute:'2-digit',second:'2-digit'}),tick=()=>t.textContent=f.format(new Date);tick();setInterval(tick,1000);
 document.getElementById('y').textContent=new Date().getFullYear();
